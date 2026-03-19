@@ -1,6 +1,22 @@
-# Cosmos-Reason2-2B Eval Pack
+# Cosmos-Reason2-2B Evaluation Pack
 
 This folder is a sanitized export of the local evaluation work for `nvidia/Cosmos-Reason2-2B`.
+
+It is meant to be safe to upload as a GitHub repository. It includes:
+
+- reproduction notes
+- environment and command summaries
+- a small model-loading probe script
+- local `lmms-eval` patch files
+- final benchmark score summaries
+
+It intentionally does **not** include:
+
+- raw benchmark `samples.jsonl`
+- full terminal logs
+- Hugging Face cache contents
+- the full cloned `lmms-eval` repo
+- benchmark dataset artifacts
 
 ## Final scores
 
@@ -12,12 +28,11 @@ This folder is a sanitized export of the local evaluation work for `nvidia/Cosmo
 
 ## Repo layout
 
-- `docs/reproduction.md`: environment, commands, and run notes
-- `docs/results.md`: final results summary and interpretation
-- `scripts/load_vlm_probe.py`: direct `transformers` load probe for Qwen3-VL-compatible models
-- `patches/lmms_eval_public_dataset_token_fix.patch`: patch used to make public MMBench/DocVQA datasets load without forcing HF token
-- `patches/lmms_eval_qwen3_vl_oom_retry_experiment.patch`: experimental OOM fallback patch explored during DocVQA work
+- `docs/reproduction.md` for environment and commands
+- `docs/results.md` for the benchmark summary
 
-## Important note
+## Notes
 
-The final official `DocVQA` score was produced with `batch_size=1` for stability on a single RTX 4090 24 GB card. The OOM retry patch is included for traceability, but it was not the final stability mechanism used for the official `DocVQA` number.
+- The final `DocVQA` score was obtained with `batch_size=1` for stability on a 24 GB GPU.
+- The OOM retry patch is included for traceability, but the official `DocVQA` score in this repo comes from the stable `batch_size=1` run rather than from the experimental fallback path.
+- This is a public evaluation pack, not a full artifact dump.
